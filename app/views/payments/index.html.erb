@@ -1,0 +1,34 @@
+<h1>Pagos recibidos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Fecha</th>
+      <th>Proyecto</th>
+      <th>Capital</th>
+      <th>+ Interes</th>
+      <th>+ Impuestos</th>
+      <th>- Impuestos retenidos</th>
+      <th>- Comisión</th>
+      <th>= Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @payments.each do |payment| %>
+      <%= tag.tr id: dom_id(payment) do %>
+        <td><%= payment.received_on %></td>
+        <td>
+          <strong><%= payment.project.name %></strong>
+          <br>
+          <small><%= payment.campaign.name %></small>
+        </td>
+        <td><%= number_to_currency payment.capital %></td>
+        <td><%= number_to_currency payment.interest %></td>
+        <td><%= number_to_currency payment.taxes %></td>
+        <td><%= number_to_currency payment.withheld_taxes %></td>
+        <td><%= number_to_currency payment.fee %></td>
+        <td><%= number_to_currency payment.total %></td>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
