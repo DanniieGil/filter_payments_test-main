@@ -1,13 +1,13 @@
-<img src="/assets/logo_briq.svg" width="120" />
-<%= Time.now %>
-<div style='margin-top:30px; display: flex; justify-content: space-between; align-items: center'>
+<a href="/"  >
+  <img src="/assets/logo_briq.svg" width="150" />
+</a>
+<div class='header_payments_title'>
   <h1 ><%= t('.payments_received') %></h1>
-  <%= form_with url: payments_path, method: :get do |form| %>
-    <%= form.select :project_id, grouped_options_for_select(@grouped_options), {}, { onChange: 'this.form.requestSubmit()'} %>
+  <%= form_with url: payments_path, method: :get, class: 'filter_select' do |form| %>
+    <%= form.select :project_id, grouped_options_for_select(@grouped_options, 0), {}, { onChange: 'this.form.requestSubmit()'} %>
   <% end %>
 </div>
-<%= paginate @payments,  remote: true %>
-<%= turbo_frame_tag :payment do %>
+<div class="header_payments_table">
   <table>
     <thead>
       <tr>
@@ -19,13 +19,11 @@
         <th>- <%= t('glossary.withhelp_taxes') %></th>
         <th>- <%= t('glossary.fee') %></th>
         <th>= Total</th>
-        <th>PROJECT_ID</th>
-        <th>STATUS</th>
       </tr>
     </thead>
     <tbody>
       <%= render partial: "payment", collection: @payments %>
     </tbody>
   </table>
-<% end %>
+</div>
 <%= paginate @payments, remote: true  %>

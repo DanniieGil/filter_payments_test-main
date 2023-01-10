@@ -86,3 +86,54 @@ table>tbody>tr:nth-of-type(odd) {
   background-color: #00a3e0;
   color: #ffff;
 }
+
+.header_payments_title {
+  position: sticky;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background: white;
+}
+
+.header_payments_table {
+  overflow-y: auto;
+  height: 70vh;
+}
+
+.header_payments_table thead th {
+  position: sticky;
+  top: 0;
+}
+
+.header_payments_table table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.header_payments_table th,
+td {
+  padding: 8px 15px;
+  border: 2px solid #989997;
+}
+
+.header_payments_table th {
+  background: #989997;
+}
+
+.filter_select select {
+  font-size: 20px;
+  border-radius: 10px;
+  background-color: #ffff;
+  box-shadow: 1px 1px solid ;
+}
+
+.filter_select optgroup {
+  font-size: 15px;
+  background-color: #ebeeee;
+}
+
+.filter_select option {
+  font-size: 13px;
+  background-color: #fcfeff;
+}
