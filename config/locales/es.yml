@@ -1,4 +1,6 @@
 en:
+  app_name: Briq.mx
+  meta_title: 'Pagos'
   activerecord:
     attributes:
       project:

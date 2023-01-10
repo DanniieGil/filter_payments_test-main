@@ -1,29 +1,31 @@
-<h1><%= t('.payments_received') %></h1>
-<%= form_with url: payments_path, method: :get do |form| %>
-  <%= form.select :project_id, grouped_options_for_select(@grouped_options), {}, { onChange: 'this.form.requestSubmit()'} %>
+<img src="/assets/logo_briq.svg" width="120" />
+<%= Time.now %>
+<div style='margin-top:30px; display: flex; justify-content: space-between; align-items: center'>
+  <h1 ><%= t('.payments_received') %></h1>
+  <%= form_with url: payments_path, method: :get do |form| %>
+    <%= form.select :project_id, grouped_options_for_select(@grouped_options), {}, { onChange: 'this.form.requestSubmit()'} %>
+  <% end %>
+</div>
+<%= paginate @payments,  remote: true %>
+<%= turbo_frame_tag :payment do %>
+  <table>
+    <thead>
+      <tr>
+        <th><%= t('glossary.date') %></th>
+        <th><%= t('glossary.project') %></th>
+        <th><%= t('glossary.capital') %></th>
+        <th>+ <%= t('glossary.interests') %></th>
+        <th>+ <%= t('glossary.taxes') %></th>
+        <th>- <%= t('glossary.withhelp_taxes') %></th>
+        <th>- <%= t('glossary.fee') %></th>
+        <th>= Total</th>
+        <th>PROJECT_ID</th>
+        <th>STATUS</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render partial: "payment", collection: @payments %>
+    </tbody>
+  </table>
 <% end %>
-<table>
-  <thead>
-    <tr>
-      <th><%= t('glossary.date') %></th>
-      <th><%= t('glossary.project') %></th>
-      <th><%= t('glossary.capital') %></th>
-      <th>+ <%= t('glossary.interests') %></th>
-      <th>+ <%= t('glossary.taxes') %></th>
-      <th>- <%= t('glossary.withhelp_taxes') %></th>
-      <th>- <%= t('glossary.fee') %></th>
-      <th>= Total</th>
-      <th>PROJECT_ID</th>
-      <th>STATUS</th>
-    </tr>
-  </thead>
-  <tbody>
-    <%= turbo_frame_tag :product do %>
-      <%= turbo_frame_tag "products", class: 'products' do %>
-        <%= render partial: "payment", collection: @payments %>
-        <%= turbo_frame_tag "products", class: 'products' %>
-      <% end %>
-    <% end %>
-  </tbody>
-</table>
-  <%= paginate @payments %>
+<%= paginate @payments, remote: true  %>
