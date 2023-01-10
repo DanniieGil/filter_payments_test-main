@@ -29,7 +29,7 @@ table {
   text-align: left;
 }
 
-table > thead > tr > th {
+table>thead>tr>th {
   vertical-align: bottom;
   border-bottom-style: solid;
   border-bottom-width: 1px;
@@ -37,13 +37,52 @@ table > thead > tr > th {
   padding: var(--size-2);
 }
 
-table > tbody > tr > td {
+table>tbody>tr>td {
   padding: var(--size-2);
   border-bottom-style: solid;
   border-bottom-width: 1px;
   border-color: var(--gray-3);
 }
 
-table > tbody > tr:nth-of-type(odd) {
+table>tbody>tr:nth-of-type(odd) {
   background-color: var(--gray-1);
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  margin-top: 12px;
+  gap: 10px;
+  border: 1px solid rgb(143, 209, 209);
+  width: fit-content;
+  border-radius: 5px;
+}
+
+.pagination span {
+  border-radius: 12px;
+  box-shadow: 0 0.8rem 2rem rgba(#5a6181, 0.05);
+  transition: all 0.3s ease;
+  padding: 12px;
+}
+
+.pagination a {
+  text-decoration: none;
+  color: #2d4848
+}
+
+.pagination a:hover {
+  color: white;
+}
+
+.pagination span:hover {
+  background-color: #00a3e0;
+  color: white;
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.pagination .current {
+  background-color: #00a3e0;
+  color: #ffff;
 }

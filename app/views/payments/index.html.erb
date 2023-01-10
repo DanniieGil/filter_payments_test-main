@@ -1,36 +1,29 @@
-<h1>Pagos recibidos</h1>
-
+<h1><%= t('.payments_received') %></h1>
+<%= form_with url: payments_path, method: :get do |form| %>
+  <%= form.select :project_id, grouped_options_for_select(@grouped_options), {}, { onChange: 'this.form.requestSubmit()'} %>
+<% end %>
 <table>
   <thead>
     <tr>
-      <th>Fecha</th>
-      <th>Proyecto</th>
-      <th>Capital</th>
-      <th>+ Interes</th>
-      <th>+ Impuestos</th>
-      <th>- Impuestos retenidos</th>
-      <th>- Comisión</th>
+      <th><%= t('glossary.date') %></th>
+      <th><%= t('glossary.project') %></th>
+      <th><%= t('glossary.capital') %></th>
+      <th>+ <%= t('glossary.interests') %></th>
+      <th>+ <%= t('glossary.taxes') %></th>
+      <th>- <%= t('glossary.withhelp_taxes') %></th>
+      <th>- <%= t('glossary.fee') %></th>
       <th>= Total</th>
+      <th>PROJECT_ID</th>
+      <th>STATUS</th>
     </tr>
   </thead>
   <tbody>
-    <% @payments.each do |payment| %>
-      <%= tag.tr id: dom_id(payment) do %>
-        <td><%= payment.received_on %></td>
-        <td>
-          <strong><%= payment.project.name %></strong>
-          <br>
-          <small><%= payment.campaign.name %></small>
-        </td>
-        <td><%= number_to_currency payment.capital %></td>
-        <td><%= number_to_currency payment.interest %></td>
-        <td><%= number_to_currency payment.taxes %></td>
-        <td><%= number_to_currency payment.withheld_taxes %></td>
-        <td><%= number_to_currency payment.fee %></td>
-        <td><%= number_to_currency payment.total %></td>
+    <%= turbo_frame_tag :product do %>
+      <%= turbo_frame_tag "products", class: 'products' do %>
+        <%= render partial: "payment", collection: @payments %>
+        <%= turbo_frame_tag "products", class: 'products' %>
       <% end %>
     <% end %>
   </tbody>
 </table>
-
-<%= paginate @payments %>
+  <%= paginate @payments %>

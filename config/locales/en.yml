@@ -1,8 +1,26 @@
 en:
+  activerecord:
+    attributes:
+      project:
+        status:
+          all_projects: 'All Projects'
+          in_operation: 'In Operation'
+          terminated: 'Terminated'
   views:
-      pagination:
-        first: "&laquo; First"
-        last: "Last &raquo;"
-        previous: "&lsaquo; Prev"
-        next: "Next &rsaquo;"
-        truncate: "&hellip;"
+    pagination:
+      first: '&laquo; First'
+      last: 'Last &raquo;'
+      previous: '&lsaquo; Prev'
+      next: 'Next &rsaquo;'
+      truncate: '&hellip;'
+  payments:
+    index:
+      payments_received: 'Payments Received'
+  glossary:
+    date: 'Date'
+    project: 'Project'
+    capital: 'Capital'
+    interests: 'Interests'
+    taxes: 'Taxes'
+    withhelp_taxes: 'Withhelp Taxes'
+    fee: 'Fee'

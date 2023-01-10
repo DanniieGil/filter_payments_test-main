@@ -1,0 +1,16 @@
+  <%= tag.tr id: dom_id(payment) do %>
+    <td><%= payment.received_on %></td>
+    <td>
+      <strong><%= payment.project.name %></strong>
+      <br>
+      <small><%= payment.campaign.name %></small>
+    </td>
+    <td><%= number_to_currency payment.capital %></td>
+    <td><%= number_to_currency payment.interest %></td>
+    <td><%= number_to_currency payment.taxes %></td>
+    <td><%= number_to_currency payment.withheld_taxes %></td>
+    <td><%= number_to_currency payment.fee %></td>
+    <td><%= number_to_currency payment.total %></td>
+    <td><%= payment.campaign.project_id %></td>
+    <td><%= payment.campaign.project.status %></td>
+  <% end %>
