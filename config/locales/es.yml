@@ -1,4 +1,4 @@
-en:
+es:
   app_name: Briq.mx
   meta_title: 'Pagos'
   activerecord:
@@ -26,3 +26,4 @@ en:
     taxes: 'Impuestos'
     withhelp_taxes: 'Impuestos Retenidos'
     fee: 'Comisión'
+    total: 'Total'
