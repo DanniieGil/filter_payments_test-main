@@ -1,0 +1,46 @@
+sheet = xlsx_package.workbook
+
+  # define your styles
+  title = sheet.styles.add_style(:bg_color => "989997",
+                            :fg_color=> "000000",
+                            :border=>Axlsx::STYLE_THIN_BORDER,
+                            :alignment=>{:horizontal => :center}
+                            )
+
+  text_field = sheet.styles.add_style(
+                          :alignment=>{:horizontal => :center}
+                          )
+
+  currency_field = sheet.styles.add_style(
+                          :format_code=>"$#,##0;[Red]$-#,##0", 
+                          :alignment=>{:horizontal => :center}
+                          )
+
+  sheet.add_worksheet(name: "Pagos") do |sheet|
+
+    sheet.add_row [
+      "Fecha",
+      "Proyectos",
+      "Campaña",
+      "Capital",
+      "Intereses",
+      "Impuestos",
+      "Impuestos Retenidos",
+      "Comisión",
+      "Total" 
+      ], :style => title
+
+    @payments.each do |payment|
+      sheet.add_row [
+        payment.received_on, 
+        payment.project.name, 
+        payment.campaign.name,
+        payment.capital,
+        payment.interest,
+        payment.taxes,
+        payment.withheld_taxes,
+        payment.fee,
+        payment.total,
+        ], :style=>[nil,text_field,text_field, currency_field, currency_field, currency_field, currency_field, currency_field, currency_field]
+  end
+end

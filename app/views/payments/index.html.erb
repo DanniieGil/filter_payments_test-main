@@ -1,6 +1,7 @@
 <a href="/"><img src="/assets/logo_briq.svg" width="150"/></a>
 <%= flash[:error] %>
 <div class='header_payments_title'>
+  <%= link_to 'Export ExcelSheet', payments_path(format: :xlsx) %>
   <h1 ><%= t('.payments_received') %></h1>
   <%= form_with url: payments_path, method: :get, class: 'filter_select' do |form| %>
     <%= form.select :project_id, options_for_select([[t("activerecord.attributes.project.status.all_projects"), '']]) + grouped_options_for_select(@grouped_options, params[:project_id]), {}, { onChange: 'this.form.requestSubmit()'} %>
