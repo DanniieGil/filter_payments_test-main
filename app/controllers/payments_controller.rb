@@ -1,3 +1,4 @@
+require 'csv'
 class PaymentsController < ApplicationController
   before_action :pagination, only: [:index]
   rescue_from ActiveRecord::StatementInvalid, with: :invalid_statement
@@ -13,15 +14,11 @@ class PaymentsController < ApplicationController
     return unless params[:project_id].present?
 
     @payments = FilterPayments.new.call(payments_params_filter).page(params[:page])
+  end
 
-    respond_to do |format|
-      format.xlsx do
-        response.headers[
-          'Content-Disposition'
-        ] = "attachment; filename='payments.xlsx'"
-      end
-      format.html { render :index }
-    end
+  def export
+    @payments = Payment.all
+    export_payments
   end
 
   private
@@ -51,5 +48,18 @@ class PaymentsController < ApplicationController
 
   def invalid_statement
     redirect_to root_path
+  end
+
+  def export_payments
+    respond_to do |format|
+      format.xlsx do
+        response.headers['Content-Disposition'] = 'attachment; filename=Pagos_Briq.xlsx'
+      end
+
+      format.csv do
+        response.headers['Content-Type'] = 'text/csv'
+        response.headers['Content-Disposition'] = 'attachment; filename=Pagos_Briq.csv'
+      end
+    end
   end
 end

@@ -1,0 +1,25 @@
+<%= CSV.generate_line [
+  t('glossary.date'), 
+  t('glossary.project'),
+  t('glossary.campaign'),
+  t('glossary.capital'),
+  t('glossary.interests'),
+  t('glossary.taxes'),
+  t('glossary.withhelp_taxes'),
+  t('glossary.fee') ,
+  t('glossary.total'),
+  ] -%>
+<%  @payments.each do |payment| %>
+  <%= CSV.generate_line(
+    [
+      payment.received_on, 
+      payment.project.name, 
+      payment.campaign.name,
+      payment.capital.to_i,
+      payment.interest.to_i,
+      payment.taxes.to_i,
+      -payment.withheld_taxes.to_i,
+      -payment.fee.to_i,
+      payment.total.to_i,
+    ]) -%>
+<% end %>

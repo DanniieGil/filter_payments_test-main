@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :payments do
     collection do
-      get :index, :show
+      get :index, :show, :export
     end
   end
 end

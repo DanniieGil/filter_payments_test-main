@@ -30,7 +30,7 @@ sheet = xlsx_package.workbook
       "Total" 
       ], :style => title
 
-    @payments.each do |payment|
+    Payment.all.each do |payment|
       sheet.add_row [
         payment.received_on, 
         payment.project.name, 
@@ -38,8 +38,8 @@ sheet = xlsx_package.workbook
         payment.capital,
         payment.interest,
         payment.taxes,
-        payment.withheld_taxes,
-        payment.fee,
+        -payment.withheld_taxes,
+        -payment.fee,
         payment.total,
         ], :style=>[nil,text_field,text_field, currency_field, currency_field, currency_field, currency_field, currency_field, currency_field]
   end
