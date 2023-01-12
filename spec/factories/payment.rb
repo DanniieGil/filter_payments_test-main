@@ -7,5 +7,6 @@ FactoryBot.define do
     withheld_taxes { 16 }
     fee { 2 }
     total { 1000 + 100 + 16 - 16 - 2 }
+    association :project, factory: :campaign
   end
 end
