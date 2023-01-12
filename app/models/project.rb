@@ -4,8 +4,6 @@ class Project < ApplicationRecord
     1 => 'terminated'
   }
 
-  has_many :campaigns
-
   after_initialize :set_defaults
 
   private
